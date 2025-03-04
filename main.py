@@ -1,18 +1,29 @@
-print("GitHub Test")
+from password_manager import PasswordManager
+from ssl_checker import SSLCertificateChecker
+# from encryptor import Encryptor  # Encryptor クラスができたら追加！
 
-# This is a sample Python script.
+def main():
+    # 🔹 パスワードマネージャーの動作確認
+    print("=== Password Manager ===")
+    manager = PasswordManager()
+    original_password = "secure_password"
+    hashed_pw = manager.hash_password(original_password)
+    print(f"ハッシュ化されたパスワード: {hashed_pw}")
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    result = manager.check_password("secure_password", hashed_pw)
+    print("パスワードが一致:", result)
 
+    # 🔹 SSL 証明書チェッカーの動作確認
+    print("\n=== SSL Certificate Checker ===")
+    checker = SSLCertificateChecker("www.google.com")
+    cert = checker.get_certificate()
+    print(f"取得した証明書: {cert}")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    # 🔹 もし Encryptor クラスを作ったらここに追加
+    # print("\n=== Encryptor ===")
+    # encryptor = Encryptor()
+    # encrypted_data = encryptor.encrypt("Hello, World!")
+    # print(f"暗号化データ: {encrypted_data}")
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    main()
